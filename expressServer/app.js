@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 
 const app = express();
-const adminRoutes = require("./routes/admin")
+const adminData = require("./routes/admin")
 const shopRoutes = require("./routes/shop")
 //needed to parse req.body
 app.use(bodyParser.urlencoded({extended: false}))
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 //to add /admin in front of every path
-app.use("/admin", adminRoutes)
+app.use("/admin", adminData.routes)
 app.use(shopRoutes);
 
 //add not found page
