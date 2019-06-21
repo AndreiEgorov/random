@@ -3,6 +3,11 @@ const bodyParser = require('body-parser');
 const path = require('path')
 
 const app = express();
+//set pug globally to access anywhere in project. No need to import as pug autoregisters with express
+//compile dynamic templates with pug and find then at "views" folder
+app.set("view engine", "pug");
+app.set("views", "views");
+
 const adminData = require("./routes/admin")
 const shopRoutes = require("./routes/shop")
 //needed to parse req.body
