@@ -21,7 +21,8 @@ app.use(shopRoutes);
 
 //add not found page
 app.use((req, res, next)=>{
-    res.status(404).sendFile(path.join(__dirname, "views", "404.html" ))
+    res.render("404", {title: "PageNotFound"})
+    // res.status(404).sendFile(path.join(__dirname, "views", "404.html" ))
 })
 
 // construct a path to a root directory with a helper function
