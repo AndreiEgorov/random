@@ -6,9 +6,12 @@ const adminData = require("./admin")
 const routes = express.Router();
 
 routes.get("/", (req, res, next) => {
-    console.log("shop.js", adminData.products);
-    //using path node module to construct a path to a file of html path.join
-    res.sendFile(path.join(rootDir, 'views/', 'shop.html'))
+    // res.sendFile(path.join(rootDir, 'views/', 'shop.html'))
+    //no need to send file. render => it knows what template engine to use and where to find 'shop' file as it is mentioned on app.js
+    const products = adminData.products;
+    console.log("PSER", products)
+    res.render('shop', {prods: products, docTitle: "Shop Tab Name"})
 });
+
 
 module.exports = routes;
