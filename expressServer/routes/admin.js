@@ -7,7 +7,7 @@ const products = []
 // real path is /admin/add-product => Get
 router.get("/add-product", (req, res, next) => {
     //sending html file instead of ugly markup
-    res.render("add-product", {title:"BATMANDOOOOS"})
+    res.render("add-product", {title:"BATMANDOOOOS", path:"admin/add-product"})
     // res.sendFile(path.join(rootDir, "views/", "add-product.html" ))
     // res.send("<form action='/admin/add-product' method='POST'><input type='text' name='title'> <button>Add product</button></form>")
 
