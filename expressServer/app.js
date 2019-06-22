@@ -8,7 +8,7 @@ const app = express();
 // in app.engine you can give any name like "hbs" => file extension will be hbs
 app.engine("hbs", expressHbs(
     {   layoutsDir: "views/layouts",
-        defaultLayout: 'main-layouts',
+        defaultLayout: 'main-layouts.hbs',
         extname: 'hbs'
     }));
 app.set("view engine", "hbs");
