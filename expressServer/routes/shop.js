@@ -9,9 +9,15 @@ routes.get("/", (req, res, next) => {
     // res.sendFile(path.join(rootDir, 'views/', 'shop.html'))
     //no need to send file. render => it knows what template engine to use and where to find 'shop' file as it is mentioned on app.js
     const products = adminData.products;
-    console.log("PSER", products)
-    res.render('shop', {prods: products, title: "Shop Tab Name", path:"/", hasProducts: products.length > 0})
+    console.log("PSER", products);
+    res.render('shop', {
+        prods: products,
+        title: "Shop Tab Name",
+        path: "/",
+        hasProducts: products.length > 0,
+        productCSS: true,
+        activeShop: true,
+    })
 });
-
 
 module.exports = routes;
