@@ -1,11 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path')
+const expressHbs = require('express-handlebars');
 
 const app = express();
-//set pug globally to access anywhere in project. No need to import as pug autoregisters with express
-//compile dynamic templates with pug and find then at "views" folder
-app.set("view engine", "pug");
+//register a new templating engine
+// in app.engine you can give any name like "hbs" => file extension will be hbs
+app.engine("hbs", expressHbs(
+    {   layoutsDir: "views/layouts",
+        defaultLayout: 'main-layouts',
+        extname: 'hbs'
+    }));
+app.set("view engine", "hbs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin")
@@ -20,16 +26,11 @@ app.use("/admin", adminData.routes)
 app.use(shopRoutes);
 
 //add not found page
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     res.render("404", {title: "PageNotFound"})
     // res.status(404).sendFile(path.join(__dirname, "views", "404.html" ))
 })
 
 // construct a path to a root directory with a helper function
-
-
-
-
-
 
 app.listen(3000)
