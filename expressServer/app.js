@@ -22,9 +22,7 @@ app.use(shopRoutes);
 //add not found page
 app.use((req, res, next) => {
     res.render("404", {title: "Page Not Found"})
-    // res.status(404).sendFile(path.join(__dirname, "views", "404.html" ))
 })
 
-// construct a path to a root directory with a helper function
 
 app.listen(3000)
