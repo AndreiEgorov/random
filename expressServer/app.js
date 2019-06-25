@@ -1,17 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path')
-const expressHbs = require('express-handlebars');
 
 const app = express();
-//register a new templating engine
-// in app.engine you can give any name like "hbs" => file extension will be hbs
-app.engine("hbs", expressHbs(
-    {   layoutsDir: "views/layouts",
-        defaultLayout: 'main-layouts.hbs',
-        extname: 'hbs'
-    }));
-app.set("view engine", "hbs");
+
+//ejs is supported out of the box => no need to initialize it with app.engine()
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin")
@@ -27,7 +21,7 @@ app.use(shopRoutes);
 
 //add not found page
 app.use((req, res, next) => {
-    res.render("404", {title: "PageNotFound"})
+    res.render("404", {title: "Page Not Found"})
     // res.status(404).sendFile(path.join(__dirname, "views", "404.html" ))
 })
 
