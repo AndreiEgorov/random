@@ -32,3 +32,4 @@ module.exports = class Product {
         getProductsFromFile(callback)
     }
 }
+
