@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-// const products = [];
 const p = path.join(__dirname, "..",  'data', 'products.json');
 
 const getProductsFromFile = (callback) =>{
@@ -10,11 +9,14 @@ const getProductsFromFile = (callback) =>{
         }
         callback(JSON.parse(fileContent))
     });
-}
+};
 
 module.exports = class Product {
-    constructor(title){
-        this.title = title
+    constructor(title, imageUrl, description, price){
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.price = price
     }
 
     save(){
