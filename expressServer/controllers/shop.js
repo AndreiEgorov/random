@@ -12,6 +12,17 @@ module.exports.getProducts = (req, res, next) => {
     });
 };
 
+module.exports.getProduct = (req, res, next) => {
+    const prodId = req.params.productId;
+    Product.findById(prodId, product => {
+        res.render('shop/product-detail', {
+            prod: product,
+            path: "shop/product-detail/${prodId}",
+            title: "Product Detail"
+        })
+    })
+}
+
 
  module.exports.getIndex = (req, res, next)=>{
      Product.fetchAll(products => {
@@ -43,3 +54,4 @@ module.exports.getCheckout = (req, res, next) =>{
         title: "Checkout"
     })
 };
+
