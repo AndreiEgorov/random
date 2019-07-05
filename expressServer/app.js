@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 // const productsController = require("./controllers/products");
 const errorController = require('./controllers/error')
+const db = require('./util/database');
 
 const app = express();
 
@@ -11,7 +12,17 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 const adminRoutes = require("./routes/admin")
-const shopRoutes = require("./routes/shop")
+const shopRoutes = require("./routes/shop");
+
+//promise allows us to chain then and catch
+db.pool.execute('SELECT * FROM products')
+    .then(result => {
+        console.log(result[0], result[1])
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
 //needed to parse req.body
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -23,6 +34,5 @@ app.use(shopRoutes);
 
 //add not found page
 app.use(errorController.get404Page);
-
 
 app.listen(3000)
