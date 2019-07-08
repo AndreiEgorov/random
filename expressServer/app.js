@@ -24,7 +24,7 @@ db.pool.execute('SELECT * FROM products')
     })
 
 //needed to parse req.body
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false})) //parses data that comes through <form> aka x-www-form-urlencoded
 
 app.use(express.static(path.join(__dirname, 'public')));
 
